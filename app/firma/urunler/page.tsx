@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/firma/urunler/page.tsx
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";

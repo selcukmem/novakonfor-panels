@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 const VERIFY_URL = process.env.VERIFY_FN_URL!;
