@@ -4,15 +4,26 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 const VERIFY_URL = process.env.VERIFY_FN_URL!;
 const ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-export default async function Page({ searchParams }: { searchParams: { email?: string } }) {
-  const email = (searchParams.email || "").toLowerCase();
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const q = await searchParams;
+  const email = (q.email as string | undefined || "").toLowerCase();
 
   if (!email) {
     return (
       <div className="max-w-md mx-auto p-6 space-y-3">
         <h1 className="text-2xl font-bold">Firma Paneli</h1>
         <form className="flex gap-2" method="GET">
-          <input name="email" type="email" placeholder="Kayıtlı e-posta" className="border p-2 rounded flex-1" required />
+          <input
+            name="email"
+            type="email"
+            placeholder="Kayıtlı e-posta"
+            className="border p-2 rounded flex-1"
+            required
+          />
           <button className="bg-black text-white rounded px-3">Giriş</button>
         </form>
       </div>

@@ -131,16 +131,16 @@ export async function updateProduct(formData: FormData) {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { q?: string; status?: string };
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const q = await searchParams; 
   const sb = supabaseAdmin();
   const firmEmail = cookies().get("firm_email")?.value || "";
   if (!firmEmail) {
     return (
       <div style={{ padding: 20, fontFamily: "Arial" }}>
         Giriş yok. Test için{" "}
-        <a href="/api/mock-login?email=navikonfortest@gmail.com">mock login</a>
-        .
+        <a href="/api/mock-login?email=navikonfortest@gmail.com">mock login</a>.
       </div>
     );
   }
